@@ -10,8 +10,8 @@ const RajkotIDCard = () => {
     birthDate: "19/08/2006",
     refNo: "8176",
     contactNo: "7405634027",
-    validFrom: "05/08/2025",
-    validTill: "07/02/2026",
+    validFrom: "07/02/2026",
+    validTill: "05/08/2026",
     category: "STUDENT (ABOVE 12 YEAR)"
   };
 
