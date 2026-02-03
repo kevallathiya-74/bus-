@@ -2,7 +2,10 @@ const CACHE_NAME = 'rajkot-id-card-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/keval.png'
+  '/keval.png',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
 // Install event - cache resources
