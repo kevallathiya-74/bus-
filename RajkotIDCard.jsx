@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 const RajkotIDCard = () => {
   const [countdown, setCountdown] = useState('');
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showInstallButton, setShowInstallButton] = useState(false);
 
   const userData = {
     name: "KEVAL SHAILESHBHAI LATHIYA",
@@ -41,8 +43,51 @@ const RajkotIDCard = () => {
     return () => clearInterval(timer);
   }, [userData.validTill]);
 
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstallButton(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) {
+      return;
+    }
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+
+    if (outcome === 'accepted') {
+      console.log('User accepted the install prompt');
+    }
+
+    setDeferredPrompt(null);
+    setShowInstallButton(false);
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-white font-sans">
+      {/* Install Button */}
+      {showInstallButton && (
+        <div className="w-full bg-[#E34234] text-white py-3 px-4 flex items-center justify-between shadow-md">
+          <span className="text-sm font-semibold">Install App for Offline Access</span>
+          <button
+            onClick={handleInstallClick}
+            className="bg-white text-[#E34234] px-4 py-1.5 rounded font-bold text-sm hover:bg-gray-100 transition"
+          >
+            Install
+          </button>
+        </div>
+      )}
+
       {/* Main Card Container - Full width for mobile */}
       <div className="w-full max-w-md bg-white shadow-sm">
         
