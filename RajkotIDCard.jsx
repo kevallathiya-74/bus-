@@ -56,11 +56,14 @@ const RajkotIDCard = () => {
           <div className="flex gap-6 mb-6">
             {/* Photo Placeholder */}
             <div className="w-32 h-40 border border-gray-300 bg-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
-               {/* Replace src with actual image link */}
                <img 
                 src="/keval.png" 
                 alt="Profile" 
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = '<div class="text-gray-400 text-xs text-center">Photo</div>';
+                }}
               />
             </div>
 
