@@ -1,12 +1,14 @@
 {
-  "name": "Rajkot ID Card",
+  "name": "Rajkot Rajpath ID Card",
   "short_name": "Rajpath ID",
-  "description": "Digital ID Card for Rajkot Rajpath Ltd",
+  "description": "Digital ID Card for Rajkot Rajpath Ltd - Student Transit Pass",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#E34234",
-  "orientation": "portrait",
+  "background_color": "#E8D5D0",
+  "theme_color": "#E8451E",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "utilities"],
   "icons": [
     {
       "src": "/icon-192.png",

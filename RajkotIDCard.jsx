@@ -10,8 +10,8 @@ const RajkotIDCard = () => {
     birthDate: "19/08/2006",
     refNo: "8176",
     contactNo: "7405634027",
-    validFrom: "05/08/2025",
-    validTill: "07/02/2026",
+    validFrom: "07/02/2026",
+    validTill: "05/08/2026",
     category: "STUDENT (ABOVE 12 YEAR)"
   };
 
@@ -20,9 +20,9 @@ const RajkotIDCard = () => {
       const [day, month, year] = userData.validTill.split('/');
       const validTillDate = new Date(year, month - 1, day, 23, 59, 59);
       const now = new Date();
-      
+
       const timeDiff = validTillDate - now;
-      
+
       if (timeDiff <= 0) {
         setCountdown('EXPIRED');
         return;
@@ -74,36 +74,43 @@ const RajkotIDCard = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white font-sans">
+    <div className="flex flex-col items-center min-h-screen bg-gradient-to-b from-[#E8D5D0] via-[#E5DCD8] to-[#D8D0E0] font-sans relative">
       {/* Install Button */}
       {showInstallButton && (
-        <div className="w-full bg-[#E34234] text-white py-3 px-4 flex items-center justify-between shadow-md">
+        <div className="w-full bg-[#E8451E] text-white py-3 px-4 flex items-center justify-between shadow-md">
           <span className="text-sm font-semibold">Install App for Offline Access</span>
           <button
             onClick={handleInstallClick}
-            className="bg-white text-[#E34234] px-4 py-1.5 rounded font-bold text-sm hover:bg-gray-100 transition"
+            className="bg-white text-[#E8451E] px-4 py-1.5 rounded font-bold text-sm hover:bg-gray-100 transition"
           >
             Install
           </button>
         </div>
       )}
 
-      {/* Main Card Container - Full width for mobile */}
-      <div className="w-full max-w-md bg-white shadow-sm">
-        
+      {/* Close Button */}
+      <button className="absolute top-4 left-4 text-gray-800 hover:text-gray-600 z-10">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      {/* Main Card Container */}
+      <div className="w-full max-w-sm bg-white shadow-xl overflow-hidden mt-12 mx-4" style={{ borderRadius: '16px' }}>
+
         {/* Header Section */}
-        <div className="bg-[#E34234] text-white py-3 px-4 text-center">
-          <h1 className="text-xl font-bold tracking-tight">Rajkot Rajpath Ltd</h1>
+        <div className="bg-[#E8451E] text-white py-4 px-4 text-center" style={{ borderRadius: '16px 16px 0 0' }}>
+          <h1 className="text-xl font-bold tracking-wide">Rajkot Rajpath Ltd</h1>
         </div>
 
         {/* Profile and Name Section */}
-        <div className="p-6">
-          <div className="flex gap-6 mb-6">
-            {/* Photo Placeholder */}
-            <div className="w-32 h-40 border border-gray-300 bg-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
-               <img 
-                src="/keval.png" 
-                alt="Profile" 
+        <div className="p-5 bg-[#F5F0ED]">
+          <div className="flex gap-4 mb-5">
+            {/* Photo */}
+            <div className="w-24 h-32 border border-gray-400 bg-white flex-shrink-0 flex items-center justify-center overflow-hidden">
+              <img
+                src="/keval.png"
+                alt="Profile"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -112,61 +119,86 @@ const RajkotIDCard = () => {
               />
             </div>
 
-            <div className="flex flex-col justify-start">
-              <h2 className="text-lg font-black leading-tight text-gray-800 mb-2 uppercase">
+            <div className="flex flex-col justify-center">
+              <h2 className="text-lg font-bold leading-tight text-gray-900 mb-2">
                 {userData.name}
               </h2>
-              <p className="text-gray-500 text-[10px] font-bold uppercase">Birth Date</p>
-              <p className="text-gray-900 font-bold">{userData.birthDate}</p>
+              <p className="text-gray-500 text-xs italic">Birth Date</p>
+              <p className="text-gray-900 font-medium text-sm">{userData.birthDate}</p>
             </div>
           </div>
 
           {/* Reference and Contact Row */}
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-4 mb-5">
             <div>
-              <p className="text-gray-500 text-[10px] font-bold uppercase">Ref.No.</p>
-              <p className="text-gray-900 font-bold text-lg">{userData.refNo}</p>
+              <p className="text-gray-500 text-xs italic mb-0.5">Ref.No.</p>
+              <p className="text-gray-900 font-bold text-xl">{userData.refNo}</p>
             </div>
             <div>
-              <p className="text-gray-500 text-[10px] font-bold uppercase">Contact No.</p>
+              <p className="text-gray-500 text-xs italic mb-0.5">Contact No.</p>
               <p className="text-gray-900 font-bold text-lg">{userData.contactNo}</p>
             </div>
           </div>
 
+          {/* Dashed Separator Line with Punch-out Notches */}
+          <div className="relative mb-5">
+            {/* Left Semi-Circle Notch - Creates punch-out effect */}
+            <div 
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-10 bg-gradient-to-b from-[#E8D5D0] via-[#E5DCD8] to-[#D8D0E0]" 
+              style={{ 
+                borderRadius: '0 50% 50% 0',
+                marginLeft: '-20px',
+                zIndex: 10
+              }}
+            ></div>
+            
+            {/* Dashed Line */}
+            <div className="border-t-2 border-dashed border-gray-400"></div>
+            
+            {/* Right Semi-Circle Notch - Creates punch-out effect */}
+            <div 
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-10 bg-gradient-to-b from-[#E8D5D0] via-[#E5DCD8] to-[#D8D0E0]" 
+              style={{ 
+                borderRadius: '50% 0 0 50%',
+                marginRight: '-20px',
+                zIndex: 10
+              }}
+            ></div>
+          </div>
+
           {/* Validity Row */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-gray-500 text-[10px] font-bold uppercase">Valid From</p>
+              <p className="text-gray-500 text-xs italic mb-0.5">Valid From</p>
               <p className="text-gray-900 font-bold text-base">{userData.validFrom}</p>
             </div>
-            <div>
-              <p className="text-gray-500 text-[10px] font-bold uppercase text-right">Valid Till</p>
-              <p className="text-gray-900 font-bold text-base text-right">{userData.validTill}</p>
+            <div className="text-right">
+              <p className="text-gray-500 text-xs italic mb-0.5">Valid Till</p>
+              <p className="text-gray-900 font-bold text-base">{userData.validTill}</p>
             </div>
           </div>
         </div>
 
         {/* Category Banner */}
-        <div className="bg-[#E34234] text-white py-1.5 px-4 text-center">
-          <p className="text-sm font-bold tracking-wide uppercase italic">
+        <div className="bg-[#E8451E] text-white py-2 px-4 text-center">
+          <p className="text-sm font-bold tracking-wide uppercase">
             {userData.category}
           </p>
         </div>
 
         {/* QR Code Section */}
-        <div className="flex flex-col items-center py-8 bg-[#F9FAFB]">
-          <div className="bg-white p-4 shadow-sm border border-gray-100">
-            {/* Replace src with actual QR code link */}
-            <img 
-              src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SampleData" 
-              alt="QR Code" 
+        <div className="flex flex-col items-center py-6 bg-[#FAFAFA]" style={{ borderRadius: '0 0 16px 16px' }}>
+          <div className="bg-white p-2">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://rajkotrajpath.com/verify/8176"
+              alt="QR Code"
               className="w-36 h-36"
             />
           </div>
-          
+
           {/* Countdown Timer */}
-          <div className="mt-4 text-center">
-            <p className="text-gray-900 font-bold text-sm">
+          <div className="mt-3 text-center">
+            <p className="text-gray-700 font-semibold text-xs">
               {countdown}
             </p>
           </div>
