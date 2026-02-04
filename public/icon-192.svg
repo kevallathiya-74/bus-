@@ -1,5 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-  <rect width="192" height="192" fill="#E34234"/>
-  <text x="96" y="105" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">RR</text>
-  <text x="96" y="145" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">RAJPATH</text>
+<svg width="192" height="192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8451E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D62F21;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" fill="url(#bg)" rx="32"/>
+  <text x="96" y="96" font-size="96" fill="white" text-anchor="middle" dy=".35em" font-family="Arial, sans-serif" font-weight="bold">R</text>
+  <text x="96" y="150" font-size="18" fill="white" text-anchor="middle" font-family="Arial, sans-serif">Rajpath</text>
 </svg>

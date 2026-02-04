@@ -9,8 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Rajpath ID" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/icon-192.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    <link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
     <title>Rajkot ID Card</title>
   </head>
   <body>
@@ -19,19 +19,24 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
             .then((registration) => {
-              console.log('[PWA] Service Worker registered:', registration.scope);
+              console.log('[PWA] ✅ Service Worker registered:', registration.scope);
               
-              // Check for updates periodically
               registration.addEventListener('updatefound', () => {
-                const newWorker = registration.installing;
-                console.log('[PWA] Service Worker update found');
+                console.log('[PWA] 🔄 Service Worker update found');
               });
             })
             .catch((error) => {
-              console.error('[PWA] Service Worker registration failed:', error);
+              console.error('[PWA] ❌ Service Worker registration failed:', error);
             });
+        });
+
+        // Listen for beforeinstallprompt event
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+          console.log('[PWA] ✅ Install prompt available');
+          deferredPrompt = e;
         });
       }
     </script>
